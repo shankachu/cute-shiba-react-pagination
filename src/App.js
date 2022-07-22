@@ -1,5 +1,5 @@
-import logo from './logo.svg';
 import './App.css';
+import { useState } from 'react';
 
 const Dog = (props) => {
   return (
@@ -14,21 +14,15 @@ const Dog = (props) => {
 
 function App() {
   const name = 'Shanshan';
-  const isUserLogdedIn = true;
+  const [totalDog, setTotalDog] = useState(0);
 
   return (
     <div className="App">
       <header className="App-header">
         <h1>Let's go {name}</h1>
-        {name && isUserLogdedIn ? (
-          <>
-          There is a name
-          </>) : (
-            <>
-              <h1>There is not name</h1>
-              <h2>test2</h2>
-            </>
-        )}
+        <h2>Total amount of dogs are {totalDog}</h2>
+        <button onClick={() => setTotalDog((prevCount) => prevCount + 1)}>Add a dog</button>
+        <button onClick={() => setTotalDog((prev) => 0)}>Refresh</button>
       </header>
       <div>
         <Dog name='Kuro' age='3' race='Shiba'/>
