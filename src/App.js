@@ -1,6 +1,7 @@
 import './App.css';
 import React, { useEffect, useState } from 'react';
 import DogCard from './DogCard';
+import { ImageList } from '@mui/material'
 
 function App() {
   const API_KEY = process.env.REACT_APP_API_KEY;
@@ -21,14 +22,11 @@ function App() {
     <div className="App">
       <header className="App-header">
         <h1>Cute Dogs!</h1>
-        <div className="search">
-          <input placeholder="Search for a dog breed" value="shiba" onChange={() => {}} />
-          <button onClick={() => {}}>Search</button>
-        </div>
       </header>
-      <div className="container">
-        {dogs.map(dog => <DogCard dog={dog} />)}
-      </div>
+
+      <ImageList variant="masonry" cols={3} gap={8} className="imageList">
+        {dogs.map((dog) => (<DogCard dog={dog} />))}
+      </ImageList>
     </div>
   );
 }
