@@ -1,33 +1,49 @@
 import './App.css';
-import { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 const Dog = (props) => {
   return (
     <>
-      <h1>Name: {props.name}</h1>
-      <h2>Age: {props.age}</h2>
-      <h2>Race: {props.race}</h2>
+      <h1>Breed: {props.breeds}</h1>
+      <h2>Height: {props.height}</h2>
     </>
   )
 }
 
+const Dog1 = {
+  "breeds": [],
+  "height": 352,
+  "id": "GLgO8VAmO",
+  "url": "https://cdn2.thedogapi.com/images/GLgO8VAmO.png",
+  "width": 329
+}
 
 function App() {
-  const name = 'Shanshan';
-  const [totalDog, setTotalDog] = useState(0);
+  const API_KEY = process.env.REACT_APP_API_KEY;
+  const url = `https://api.thedogapi.com/v1/images/search?api_key=${API_KEY}&limit=20&order=Desc`;
+  const fetchDogs = async () => {
+    const response = await fetch(url)
+    const data = await response.json();
+    console.log(data);
+  }
+
+  useEffect(() => {
+    // Page load 100 dogs when the page starts
+    fetchDogs();
+  }, []);
 
   return (
     <div className="App">
       <header className="App-header">
-        <h1>Let's go {name}</h1>
-        <h2>Total amount of dogs are {totalDog}</h2>
-        <button onClick={() => setTotalDog((prevCount) => prevCount + 1)}>Add a dog</button>
-        <button onClick={() => setTotalDog((prev) => 0)}>Refresh</button>
+        <h1>Cute Dogs!</h1>
+        <div className="search">
+          <input placeholder="Search for a dog breed" value="shiba" onChange={() => {}} />
+          <button onClick={() => {}}>Search</button>
+        </div>
       </header>
-      <div>
-        <Dog name='Kuro' age='3' race='Shiba'/>
-        <Dog name='Oreo' age='3' race='Shiba'/>
-        <Dog name='Gigi' age='1' race='Chiwawa'/>
+      <div className="container">
+        <Dog className="card"/>
+        <img src={ Dog1.url !== 'N/A' ? Dog1.url : 'https://via.placeholder.com/400'} alt="" />
       </div>
     </div>
   );
