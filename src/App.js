@@ -1,12 +1,12 @@
 import logo from './logo.svg';
 import './App.css';
 
-const Dog = () => {
+const Dog = (props) => {
   return (
     <>
-      <h1>Name: Kuro</h1>
-      <h2>Age: 3</h2>
-      <h2>Race: Shiba</h2>
+      <h1>Name: {props.name}</h1>
+      <h2>Age: {props.age}</h2>
+      <h2>Race: {props.race}</h2>
     </>
   )
 }
@@ -31,11 +31,9 @@ function App() {
         )}
       </header>
       <div>
-        <Dog />
-        <Dog />
-        <Dog />
-        <Dog />
-        <Dog />
+        <Dog name='Kuro' age='3' race='Shiba'/>
+        <Dog name='Oreo' age='3' race='Shiba'/>
+        <Dog name='Gigi' age='1' race='Chiwawa'/>
       </div>
     </div>
   );
