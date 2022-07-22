@@ -1,7 +1,7 @@
 import './App.css';
 import React, { useEffect, useState } from 'react';
 import DogCard from './DogCard';
-import { ImageList } from '@mui/material'
+import { Container, ImageList, Pagination } from '@mui/material'
 
 function App() {
   const API_KEY = process.env.REACT_APP_API_KEY;
@@ -19,15 +19,16 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
+    <Container>
       <header className="App-header">
         <h1>Cute Dogs!</h1>
       </header>
 
+      <Pagination count={10} color="secondary" className="pagination"/>
       <ImageList variant="masonry" cols={3} gap={8} className="imageList">
         {dogs.map((dog) => (<DogCard dog={dog} />))}
       </ImageList>
-    </div>
+    </Container>
   );
 }
 
